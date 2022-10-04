@@ -6,7 +6,7 @@
         <img alt="logo" class="logo" src="@/assets/logo.jpg" />
         <a class="phone-link" href="tell:8778041606">
           <img alt="" class="phone-icon" src="@/assets/call.svg" />
-          (877) 814 1606&nbsp;
+          (877) 804 1606&nbsp;
         </a>
       </header>
       <main :style="IsSize_Date() && 'z-index:4;'" class="main">
