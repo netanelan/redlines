@@ -20,8 +20,8 @@ export const useFetch = async <T>(
   request = {},
   options: Record<string, unknown> = {}
 ) => {
-  const endPoint = `http://stage.redvanlines.com:8081${url}`;
-  // const endPoint = `${import.meta.env.VITE_API_ENDPOINT}${url}`;
+  // const endPoint = `http://stage.redvanlines.com:8081${url}`;
+  const endPoint = `${import.meta.env.VITE_API_ENDPOINT}${url}`;
   const token = await enc();
   options = {
     ...options,

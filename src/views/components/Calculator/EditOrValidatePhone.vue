@@ -183,7 +183,7 @@ export default {
   background-color: white;
   width: 250px;
   border-radius: 3px;
-  font-size: 1.125rem;
+  font-size: 18px;
   height: 70px;
   margin-bottom: 11px;
   text-align: center;
@@ -194,7 +194,7 @@ export default {
 .btn {
   color: white;
   width: 250px;
-  font-size: 1.125rem;
+  font-size: 18px;
   font-weight: bold;
   height: 70px;
   border-radius: 3px;

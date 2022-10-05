@@ -190,7 +190,7 @@ input::-webkit-inner-spin-button {
 .input {
   background-color: white;
   width: 300px;
-  font-size: 22px;
+  font-size: 18px;
   height: 65px;
   text-align: center;
   border-radius: 3px;
@@ -204,7 +204,7 @@ input::-webkit-inner-spin-button {
 .btn {
   color: white;
   width: 250px;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: bold;
   height: 65px;
   border-radius: 3px;

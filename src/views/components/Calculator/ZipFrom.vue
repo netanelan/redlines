@@ -61,8 +61,8 @@
       </div>
       </form>
     </div>
-    <div class="text">Long Distance Moving Nationwide</div>
-    <ul class="list">
+    <div class="text thin-font">Long Distance Moving Nationwide</div>
+    <ul class="list thin-font">
       <li>Licensed</li>
       <li>&#9679; Insured</li>
       <li>&#9679; Trusted</li>
@@ -267,6 +267,12 @@ export default {
   margin-bottom: 2px;
   font-style: italic;
   margin-top: 5px;
+}
+.list{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:10px;
 }
 
 .list li {

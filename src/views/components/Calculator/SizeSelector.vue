@@ -135,7 +135,7 @@ export default {
   margin-top: 15px;
   cursor: pointer;
   font-weight: 900;
-  font-size: 1.1rem;
+  font-size: 18px;
 }
 
 .btn-wrapper {

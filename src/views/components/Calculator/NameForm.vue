@@ -104,7 +104,7 @@ export default {
   margin: 0 auto 30px;
   width: 270px;
   height: 40px;
-  border: 1px solid rgb(194,193,193,0.3);
+  border: 1px solid rgb(194,193,193,0.2);
   border-radius: 3px;
 }
 
@@ -160,13 +160,14 @@ export default {
 .input {
   background-color: white;
   border-radius: 3px;
-  font-size: 20px;
+  font-size: 18px;
   height: 68px;
   width: 167px;
   margin-bottom: 20px;
   text-align: center;
   border: none;
   padding: 10px 5px;
+  font-size: 18px;
 }
 
 
@@ -175,7 +176,7 @@ export default {
 .btn {
   color: white;
   border-radius: 3px;
-  font-size: 1.5rem;
+  font-size: 18px;
   font-weight: 800;
   height: 65px;
   width: 160px;

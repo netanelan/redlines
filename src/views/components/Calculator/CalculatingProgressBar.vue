@@ -1,4 +1,5 @@
 <template>
+  <div :style="showMovers()" class="moversNumber"></div>
   <div class="calculating-progress-bar thin-font">
     <div class="info-block">
       <div class="text-wrapp">
@@ -7,7 +8,7 @@
           Size: <span>{{ lead.move_size.name }}</span>
         </div>
       </div>
-      <div class="text-wrapp">
+      <div class="text-wrapp">  
         <img alt="" class="icon-calendar" src="@/assets/calendar.svg" />
         <div class="text">
           Date: <span>{{ moveDate }}</span>
@@ -32,17 +33,17 @@
     </div>
     <div class="check-mark">
       <img
-        v-if="percentage >= 50"
+        v-if="percentage >= 30"
         alt=""
         class="check-mark-icon"
         src="@/assets/check-mark-filled.svg"
       />
     </div>
-    <div v-if="percentage < 25" class="title">Calculating...</div>
-    <div v-else-if="percentage >= 25 && percentage < 50" class="title">
+    <div v-if="percentage < 16" class="title">Calculating...</div>
+    <div v-else-if="percentage >=16 && percentage < 30" class="title">
       Searching For Movers...
     </div>
-    <div v-else-if="percentage >= 50" class="title">
+    <div v-else-if="percentage >= 30" class="title">
       We Found <span class="accent">{{ moversCount }}</span> Movers in Your
       Area!
     </div>
@@ -69,7 +70,7 @@ export default {
   computed: {
     ...mapState(useStepperStore, ["lead", "moveDate"]),
     barStyles() {
-      if(this.percentage>=50){
+      if(this.percentage>=30){
         return {
           width: this.percentage + "%",
           backgroundColor:"#05ad05"
@@ -94,28 +95,48 @@ export default {
         router.push("/email-form");
       };
       const handle = () => {
-        this.percentage += 25;
-
-        if (this.percentage > 50) {
+        if(this.percentage<100)this.percentage++;
+        if(this.percentage==30){
+          document.getElementsByClassName("check-mark-icon")[0].style.cssText="scale:(1.5);"
+        }
+        if(this.percentage==35){
+          document.getElementsByClassName("check-mark-icon")[0].style.cssText="scale:(1);"
+        }
+        if (this.percentage > 45) {
           this.moversCount = 2;
         }
 
         if (this.percentage > 75) {
-          this.moversCount = 4;
+          this.moversCount = 3;
         }
 
         if (this.percentage >= 100) {
+          this.moversCount=4;
           this.percentage = 100;
           this.timeOut = setTimeout(redirect, 2000);
         }
       };
-      this.interval = setInterval(handle, 1000);
+      this.interval = setInterval(handle, 60);
     },
+    showMovers(){
+    if(this.percentage>=30) return `top:${374+40+26*this.moversCount}px;`;
+  },
   },
 };
 </script>
 
 <style scoped>
+
+.moversNumber{
+  position: absolute;
+  max-width: 500px;
+  width:100vw;
+  margin: 0px auto;
+  z-index: 2;
+  background-color:white;
+  top:374px;
+  height: 175px;
+}
 .calculating-progress-bar {
   padding: 30px 20px 20px 20px;
 }
@@ -158,6 +179,7 @@ export default {
 .check-mark-icon {
   width: 40px;
   height: 40px;
+  transform: all 0.3s;
 }
 
 .icon-home {
@@ -215,12 +237,11 @@ export default {
 }
 
 .bar {
-  /* background-color: #05ad05; */
   background-color: rgb(122,160,105);
   border-radius: 10px;
   height: 100%;
   width: 0;
-  transition: width 1s ease;
+  transition: width 0.06s ease;
 }
 
 .accent {

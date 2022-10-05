@@ -76,7 +76,7 @@ export default {
   font-size: 15px;
   letter-spacing: 0.5px;
 }
-
+/* s */
 .btn {
   color: white;
   width: 150px;
@@ -84,7 +84,7 @@ export default {
   border-radius: 10px;
   padding: 10px 5px;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 18px;
 }
 .btn-yes{
   background-color: #ff9e01;

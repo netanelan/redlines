@@ -341,7 +341,7 @@ span {
   width: 160px;
   height: 65px;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 18px;
   border-radius: 3px;
   border: none;
   background-color: #ff9e01;
