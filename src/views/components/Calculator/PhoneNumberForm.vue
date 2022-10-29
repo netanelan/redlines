@@ -14,7 +14,7 @@
     <div class="phone-number-form">
       <form class="form">
         <h2 v-if="!hasError" class="title">
-          What Is The Best Number<br />To Reach You?
+          What Is Your Phone Number?
         </h2>
         <div v-if="hasError" class="text-wrapp">
           <h2 class="zip-title">Please enter valid number</h2>
@@ -25,7 +25,7 @@
           v-mask="['(###) ###-####']"
           class="input"
           maxlength="17"
-          placeholder="Enter Phone Number"
+          placeholder="Enter Valid Phone"
           type="tel"
           @keydown.enter="onSubmit"
           @input.prevent="onChange"
@@ -189,8 +189,9 @@ input::-webkit-inner-spin-button {
 
 .input {
   background-color: white;
-  width: 300px;
-  font-size: 18px;
+  max-width: 300px;
+  width: 100%;
+  font-size: 22px;
   height: 65px;
   text-align: center;
   border-radius: 3px;
@@ -203,8 +204,9 @@ input::-webkit-inner-spin-button {
 
 .btn {
   color: white;
-  width: 250px;
-  font-size: 18px;
+  max-width: 250px;
+  width: 84%;
+  font-size: 19px;
   font-weight: bold;
   height: 65px;
   border-radius: 3px;
@@ -261,5 +263,8 @@ input::-webkit-inner-spin-button {
   margin-top: 15px;
   margin-bottom: 15px;
   font-size: 1rem;
+}
+@media screen and (max-width:300px){
+  .btn{width:100%;}
 }
 </style>

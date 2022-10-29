@@ -1,31 +1,30 @@
 <template>
-  <div class="layer">
-    <div v-if="IsSize_Date()" class='bgblur'></div>
-    <div :style="bgColor()" class="home-layout">
+  <div  class="layer">
+    <div v-if="IsSize_Date()"  class='bgblur'></div>
+    <div  :style="bgColor()" class="home-layout">
       <header class="header">
-        <img alt="logo" class="logo" src="@/assets/logo.jpg" />
+        <img alt="logo" class="logo" src="@/assets/logo.jpg" width="120" height="50" />
         <a class="phone-link" href="tell:8778041606">
           <img alt="" class="phone-icon" src="@/assets/call.svg" />
-          (877) 804 1606&nbsp;
+          (877) 804 1606
         </a>
       </header>
       <main :style="IsSize_Date() && 'z-index:4;'" class="main">
         <slot></slot>
       </main>
-      <div  :style="truckBgImage()" :class="showTruck ? 'truck' : 'quata'">
-        <div v-if="showTruck" :class="onFirstPage() ? 'blurFpage' : 'blurRestPages' " class="bg_img_blur"></div>
+      <div  :style="truckBgImage()" :class="showImage">
+        <div v-if="showImage=='truck'" :class="TruckBlurrAffect()" class="bg_img_blur"></div>
+        <footer class="footer thin-font">
+        <a @click="showFooterOptions" id="join_our_network"  class="link border" href="#">Join Our Network</a>
+        <a @click="showFooterOptions" id="privacy_policy"  class="link border" href="#">Privacy Policy</a>
+        <a @click="showFooterOptions" id="terms"  class="link border" href="#">Terms of Use</a>
+        <a  @click="showFooterOptions" id="dont_sell_info"  class="link" href="#">Don't Sell my Information</a>
+      </footer> 
       </div>
-      <footer class="footer thin-font">
-        <a @click="showJoinOurTeam" :style="IsSize_Date() && 'color:rgb(81,81,81);border-right: 1px solid rgb(81,81,81);'" class="link border" href="#">Join Our Network</a>
-        <a @click="showPrivacyPolicy" :style="IsSize_Date() && 'color:rgb(81,81,81);border-right: 1px solid rgb(81,81,81);'" class="link border" href="#">Privacy Policy</a>
-        <a @click="showTermOfUse" :style="IsSize_Date() && 'color:rgb(81,81,81);border-right: 1px solid rgb(81,81,81);'" class="link border" href="#">Terms of Use</a>
-        <a  @click="showDontSellMyInfo" :style="IsSize_Date() && 'color:rgb(81,81,81);'" class="link" href="#">Don't Sell my Information</a>
-      </footer>
-      
       <div class="footer_options-container thin-font">
-        <div class="privacy_policiy-container">
-            <div @click="removePrivacyPolicy" class="exit_footer_option-wrapper">
-              <img src="@/assets/exit-footer-option.svg" class="exit-footer-option-icon" alt="" >
+        <div id="privacy_policy-container" class="privacy_policy-container">
+            <div @click="removeFooterOptions" class="exit_footer_option-wrapper">
+              <img src="@/assets/exit-footer-option.svg" class="exit-footer-option-icon" width="20" height="30" alt="" >
             </div>
             <div class="scroll-container">
               <h1 class="main-text">Privacy Policy</h1>
@@ -188,9 +187,9 @@
         </div>
       </div>
       <div class="footer_options-container thin-font">
-        <div class="join_our_network-container">
+        <div id="join_our_network-container" class="join_our_network-container">
           <div class="exit_footer_option-wrapper">
-              <img @click="removeJoinOurTeam" src="@/assets/exit-footer-option.svg" class="exit-footer-option-icon" alt="" >
+              <img @click="removeFooterOptions" src="@/assets/exit-footer-option.svg" width="20" height="30" class="exit-footer-option-icon" alt="" >
             </div>
             <div class="join_us_form-container">
               <h1>
@@ -247,9 +246,9 @@
         </div>
       </div>
       <div class="footer_options-container thin-font">
-        <div class="terms-container">
+        <div id="terms-container" class="terms-container">
           <div class="exit_footer_option-wrapper">
-              <img @click="removeTermOfUse" src="@/assets/exit-footer-option.svg" class="exit-footer-option-icon" alt="" >
+              <img @click="removeFooterOptions" src="@/assets/exit-footer-option.svg" width="20" height="30" class="exit-footer-option-icon" alt="" >
             </div>
             <div class="scroll-container">
             <h1 class="main-title">Terms of Use</h1>
@@ -320,9 +319,9 @@
 
       </div>
       <div class="footer_options-container thin-font">
-        <div class="dont_sell_info-container">
+        <div id="dont_sell_info-container" class="dont_sell_info-container">
           <div class="exit_footer_option-wrapper">
-              <img @click="removeDontSellMyInfo" src="@/assets/exit-footer-option.svg" class="exit-footer-option-icon" alt="" >
+              <img @click="removeFooterOptions" src="@/assets/exit-footer-option.svg" width="20" height="30" class="exit-footer-option-icon" alt="" >
             </div>
             <div class="dont_sell_info_content-container">
               <h1>Do Not Sell</h1>
@@ -339,20 +338,18 @@
 import truck from "@/assets/truck-no-blur.svg";
 import quata from "@/assets/quata.png";
 import router from "@/router";
-import { ref } from "vue";
 import { mapState } from "pinia";
 import { useStepperStore } from "@/store/stepper.store";
 export default {
   name: "HomeLayout",
   data() {
-    const showTruck = ref(false);
     return {
       join_us_FullName:"",
       join_us_Business_Name:"",
       join_us_Email:"",
       join_us_Phone:"",
       join_us_hasError:false,
-      showTruck,
+      showImage:"",
       quata,
       truck,
       maxHeight: `${window.innerHeight}px`,
@@ -361,6 +358,11 @@ export default {
   },
   computed: {
     ...mapState(useStepperStore, ["showTruck"]),
+  },
+  watch:{
+    $route(){
+      window.scrollTo(0,0);
+    }
   },
   methods: {
     bgColor() {
@@ -374,14 +376,19 @@ export default {
     },
     truckBgImage() {
       if (
-        router.currentRoute.value.fullPath === "/size-selector" ||
-        router.currentRoute.value.fullPath === "/date-selector" ||
         router.currentRoute.value.fullPath === "/phone-number-edit-validate" ||
         router.currentRoute.value.fullPath === "/enter-two-digit-number" ||
-        router.currentRoute.value.fullPath =="/request-submitted"
+        router.currentRoute.value.fullPath =="/request-submitted" 
       ) {
-        return "display:none";
+        this.showImage='';
+        return "display:block;height:38px;";
       }
+      if(router.currentRoute.value.fullPath === "/size-selector" ||
+        router.currentRoute.value.fullPath === "/date-selector"
+        ) {
+          this.showImage='';
+          return "display:none;";
+        }
       if (
         router.currentRoute.value.fullPath === "/email-form" ||
         router.currentRoute.value.fullPath === "/name-form" ||
@@ -389,68 +396,76 @@ export default {
         router.currentRoute.value.fullPath === "/movers-offline-warning" ||
         router.currentRoute.value.fullPath === "/calculating-progress-bar"
        ) {
-        this.showTruck = false;
+        this.showImage = 'quata';
         return `background-image: url(${quata})`;
       }
-
-      this.showTruck = true;
-      if(router.currentRoute.value.fullPath==="/zip-to")
-        return `background-image: url(${truck});height:calc(100vh - 443px);`;
-      if(router.currentRoute.value.fullPath==="/") return `background-image: url(${truck})`
+      if(router.currentRoute.value.fullPath==="/zip-to"){
+        this.showImage='truck';
+        return `background-image: url(${truck});height:calc(100% - 423px);top:423px;`;
+      }
+      if(router.currentRoute.value.fullPath==="/"){
+        this.showImage='truck'
+         return `background-image: url(${truck})`
+        }
+      this.showImage='';
+    },
+    TruckBlurrAffect(){
+      if(router.currentRoute.value.fullPath=="/") return "blurFpage";
+      if(router.currentRoute.value.fullPath=="/size-selector" || router.currentRoute.value.fullPath=="/date-selector") return "";
+      return "blurRestPages";
     },
     IsSize_Date(){
       return router.currentRoute.value.fullPath=="/size-selector" || router.currentRoute.value.fullPath=="/date-selector"
     },
-    onFirstPage(){
-      return router.currentRoute.value.fullPath=="/";
+    onClickFooterOptions(element,show){
+      if(show){
+        let opacity=0;
+        let intervalID=setInterval(()=>{
+          opacity+=1/60;
+          element.style.cssText=`opacity:${opacity};z-index:999999;`;
+          if(opacity>=1) clearInterval(intervalID);
+        },400/60)
+      }
+      else{
+        let opacity=1;
+        let intervalID=setInterval(()=>{
+          opacity-=1/60;
+          element.style.cssText=`opacity:${opacity};z-index:999999;`;
+          if(opacity<=0) {clearInterval(intervalID);element.removeAttribute("style");}
+        },400/60)
+      }
+
     },
-    onZipto(){
-      router.currentRoute.value.fullPath=="/zip-to" && 'height:calc(100vh - 443)'
+    showFooterOptions(event){
+      this.onClickFooterOptions(document.getElementById(`${event.target.id}-container`).parentElement,true);
     },
-    showPrivacyPolicy(){
-      document.getElementsByClassName("privacy_policiy-container")[0].parentElement.style.cssText="opacity:1;z-index:9999;";
-      document.getElementsByClassName("privacy_policiy-container")[0].style.cssText="opacity:1;";
+    removeFooterOptions(event){
+      this.onClickFooterOptions(event.target.parentElement.parentElement.parentElement,false);
     },
-    removePrivacyPolicy(){
-      document.getElementsByClassName("privacy_policiy-container")[0].parentElement.removeAttribute("style");
-      document.getElementsByClassName("privacy_policiy-container")[0].removeAttribute("style");
-    },
-    showTermOfUse(){
-      document.getElementsByClassName("terms-container")[0].parentElement.style.cssText="opacity:1;z-index:9999;";
-      document.getElementsByClassName("terms-container")[0].style.cssText="opacity:1;";
-    },
-    removeTermOfUse(){
-      document.getElementsByClassName("terms-container")[0].parentElement.removeAttribute("style");
-      document.getElementsByClassName("terms-container")[0].removeAttribute("style");
-    },
-    showJoinOurTeam(){
-      document.getElementsByClassName("join_our_network-container")[0].parentElement.style.cssText="opacity:1;z-index:9999;";
-      document.getElementsByClassName("join_our_network-container")[0].style.cssText="opacity:1;";
+    disableDocumentScrolling(disable){
+      if(disable){
+        document.body.style.cssText="overflow:hidden";
+      }
+      else{
+        document.body.removeAttribute("style");
+      }
     },
     removeJoinOurTeam(){
-      document.getElementsByClassName("join_our_network-container")[0].parentElement.removeAttribute("style");
-      document.getElementsByClassName("join_our_network-container")[0].removeAttribute("style");
-      // this.join_us_hasError=false;
-    },
-    showDontSellMyInfo(){
-      document.getElementsByClassName("dont_sell_info-container")[0].parentElement.style.cssText="opacity:1;z-index:9999;";
-      document.getElementsByClassName("dont_sell_info-container")[0].style.cssText="opacity:1;";
-    }
-    , removeDontSellMyInfo(){
-      document.getElementsByClassName("dont_sell_info-container")[0].parentElement.removeAttribute("style");
-      document.getElementsByClassName("dont_sell_info-container")[0].removeAttribute("style");
+      document.getElementById("join_our_network-container").parentElement.removeAttribute("style");
     },
     onSubmitJoinUs() {
-      if (this.join_us_FullName.length==0 || this.join_us_Business_Name.length==0  || this.join_us_Email.length==0 ) {
+      if (this.join_us_FullName.length==0 || this.join_us_Business_Name.length==0  || this.join_us_Email.length==0 || this.join_us_Phone.length==0 ) {
         this.join_us_hasError = true;
         return;
       }
       if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(this.join_us_Email)) {
         this.join_us_hasError=true;
+        console.log("email error");
         return;
       }
       else{
         this.removeJoinOurTeam();
+        this.join_us_hasError=false;
       }
     }
   },
@@ -458,6 +473,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 .footer-grid {
   display: grid;
 }
@@ -470,10 +487,10 @@ export default {
 }
 .join_our_network-container{
   position: relative;
-  top:70px;
+  top:40px;
   border-radius: 5px;
   width: 80%;
-  min-width: 350px;
+  min-width: 280px;
   margin: 0px auto;
   padding: 10px 3px 20px;
   background-color: white;
@@ -500,6 +517,10 @@ export default {
   padding:20px 0px 20px;
   margin: 30px 10px 0px;
   border-radius: 5px;
+}
+
+.footer-option-chosen{
+  z-index: 9999;
 }
 
 .input_join_us{
@@ -530,8 +551,8 @@ export default {
 }
 
 .exit-footer-option-icon{
-  width: 20px;
   margin-right: 10px;
+  cursor: pointer;
 }
 .footer_options-container{
   position: absolute;
@@ -540,19 +561,16 @@ export default {
   background-color: rgb(23,38,62,0.9);
   top: 0%;
   left: 0%;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
-  transition: all 0.5s;
-
+  overflow: auto;
 }
-.privacy_policiy-container,.terms-container,.dont_sell_info-container{
+.privacy_policy-container,.terms-container{
   position: relative;
   top:70px;
-  opacity: 0;
   width: 80vw;
   height: 70vh;
   background-color:white;
-  /* transition: all 0.5s; */
   margin: 0% auto;
   color: #000;
   text-align: left;
@@ -563,6 +581,22 @@ export default {
   z-index: -1;
   border-radius: 10px;
 }
+.dont_sell_info-container{
+  position: relative;
+  top:70px;
+  width: 80vw;
+  background-color:white;
+  margin: 0% auto;
+  color: #000;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+  padding: 10px 5px 10px;
+  z-index: -1;
+  border-radius: 10px;
+}
+
 .dont_sell_info_content-container{
   color:black;
   display: flex;
@@ -573,7 +607,7 @@ export default {
   margin:auto;
   font-size: 18px;
 }
-.privacy_policiy-container>* ,.outer>*,.terms-container>*,.dont_sell_info-container>*,.scroll-container>*{
+.privacy_policy-container>* ,.outer>*,.terms-container>*,.dont_sell_info-container>*,.scroll-container>*{
   font-size: 12px;
 }
 
@@ -606,7 +640,7 @@ export default {
 
 .bgblur{
   position: absolute;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   background-color: rgb(0,0,0,0.88);
   z-index: 2;
@@ -633,9 +667,10 @@ export default {
 }
 .truck {
   position: absolute;
-  height: calc(100vh - 467px);
+  height: calc(100% - 442px);
   width: 100vw;
-  bottom: 0;
+  top:442px;
+  min-height: 150px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -653,9 +688,8 @@ export default {
 .home-layout {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  min-width: calc(100vw);
-  min-height: calc(100vh - 1px);
+  width: 100vw;
+  min-height: v-bind(maxHeight);
   margin: 0 auto;
 }
 
@@ -666,11 +700,11 @@ export default {
 .layer {
   display: grid;
   position: relative;
+  overflow: hidden;
 }
 
 .main {
   z-index: 2;
-  padding: 0;
 }
 
 .home-layout.size-selector .footer,
@@ -680,67 +714,74 @@ export default {
   display: none;
 }
 
-a {
-  text-decoration: none;
-  color: #000;
-}
 
 .header {
   background-color: #fff;
   display: flex;
   justify-content: space-between;
-  padding: 0 2px;
+  padding: 0 8px 0px 2px;
   box-shadow: 0 1px 5px rgba(57, 63, 72, 0.3);
+
 }
 
 .footer {
   position: absolute;
   bottom: 0;
-  z-index: 2;
   left: 5px;
   right: 5px;
   margin-bottom: 8px;
   display: flex;
   justify-content: space-between;
-  font-size: 6px;
+  font-size: 10px;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border-radius: 10px;
+  color:rgb(0,0,0,0.8)
 }
 .footer > *{
   width: 100%;
 }
 
-.logo {
-  width: 120px;
-  height: 50px;
-}
+
 
 .phone-icon {
-  width: 25px;
-  height: 25px;
+  width: 23px;
+  height: 23px;
   background-color: rgb(10, 91, 167);
   padding: 5px;
   border-radius: 50%;
-  margin-right: 5px;
+  margin:0px 5px 2px 0px;
+  transform: rotate(25deg);
 }
 
 .phone-link {
   color: rgb(10, 91, 167);
-  font-weight: bold;
-  font-size: 1.2rem;
-  text-decoration: underline;
   display: flex;
   align-items: center;
 }
 
 .border {
-  border-right: 1px solid #000;
+  border-right: 1px solid rgb(0,0,0,0.2);;
 }
 
 
 
 .link {
- 
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: rgb(0,0,0,0.4);
+}
+
+@media screen and (max-width:325px){
+  .phone-link{
+    font-size: 12px;
+  }
+  .phone-icon{
+    width: 20px;
+    height: 20px;
+  }
 }
 </style>

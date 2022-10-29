@@ -78,7 +78,7 @@ a {
 }
 
 .request-submitted {
-  padding: 20px;
+  padding: 20px 20px 10px;
 }
 
 .location-wrapp {
@@ -124,7 +124,7 @@ a {
 
 .text-ordinary {
   font-style: italic;
-  font-size: 0.8rem;
+  font-size: 13px;
   color: #808080;
   margin-bottom: 15px;
 }
@@ -135,7 +135,7 @@ a {
   border-radius: 15px;
   background-color: rgb(235,235,235);
   margin: 0 auto;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 .confirm-text {
@@ -158,7 +158,7 @@ a {
 .text-big {
   font-size: 1rem;
   color: #808080;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 .card {
@@ -189,7 +189,8 @@ a {
   margin: 0 auto;
   margin-bottom: 15px;
   padding: 10px;
-  width: 250px;
+  max-width: 250px;
+  width: 100%;
   align-items: center;
 }
 

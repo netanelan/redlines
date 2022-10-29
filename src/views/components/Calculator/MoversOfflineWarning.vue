@@ -84,7 +84,7 @@ export default {
   border-radius: 10px;
   padding: 10px 5px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 19px;
 }
 .btn-yes{
   background-color: #ff9e01;

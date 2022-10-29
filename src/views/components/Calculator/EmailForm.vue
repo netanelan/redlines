@@ -83,6 +83,7 @@ export default {
       this.hasError = false;
       this.isValidEmail = true;
       router.push("/name-form");
+      // router.push("/enter-two-digit-number");
     },
   },
 };
@@ -90,7 +91,7 @@ export default {
 
 <style scoped>
 .wrapper {
-  padding: 20px 0;
+  padding: 20px 5px;
 }
 
 .movers-wrapper {
@@ -105,6 +106,9 @@ export default {
 }
 
 .email-form {
+  margin: auto;
+  border-radius: 10px;
+  max-width: 500px;
   background-color: #414c5e;
 }
 
@@ -127,7 +131,7 @@ export default {
 }
 
 .form {
-  padding: 25px 5px 5px 5px;
+  padding: 25px 10px 5px 10px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -148,9 +152,10 @@ export default {
 
 .input {
   background-color: white;
-  width: 301px;
+  max-width: 301px;
+  width: 100%;
   border-radius: 3px;
-  font-size: 18px;
+  font-size: 22px;
   height: 63px;
   margin-bottom: 20px;
   text-align: center;
@@ -163,8 +168,8 @@ export default {
 .btn {
   color: white;
   width: 160px;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 19px;
+  /* font-weight: bold; */
   height: 65px;
   border-radius: 3px;
   border: none;

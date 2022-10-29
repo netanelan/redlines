@@ -17,15 +17,8 @@
     <div class="location-wrapp">
       <div class="text-wrapp">
         <img class="location-icon" src="@/assets/location.svg" alt="" />
+        <span class="text-from thin-font">From :</span>
         <span class="thin-font location-text">{{ lead.from_city }}, {{ lead.from_state }}</span>
-      </div>
-      <img class="arrow-icon" src="@/assets/arrow-right-to.svg" alt="" />
-      <div class="text-wrapp">
-        <img class="location-icon" src="@/assets/location.svg" alt="" />
-        <span class="thin-font location-text" v-if="!isZipValid && !hasError">Unknown...</span>
-        <span class="thin-font location-text" v-if="isZipValid && !hasError"
-          >{{ lead.to_city }}, {{ lead.to_state }}</span
-        >
       </div>
     </div>
     <div class="zip-form">
@@ -178,9 +171,13 @@ export default {
 <style scoped>
 .wrapper {
   width: 100%;
-  padding-top: 40px;
+  padding-top: 20px;
 }
-
+.text-from{
+  color: #808080;
+  font-size: 13px;
+  margin-right: 3px;
+}
 .form-wrapper {
   position: relative;
   display: flex;
@@ -188,6 +185,9 @@ export default {
   justify-content: center;
   gap:15px;
   margin-bottom: 15px;
+}
+.form-wrapper >*{
+  width: 100%;
 }
 
 .grid {
@@ -266,7 +266,7 @@ export default {
 
 .form {
   background-color: #414c5e;
-  padding: 10px 5px 20px 5px;
+  padding: 10px 10px 20px;
   min-height: 217px;
   display: flex;
   align-items: center;
@@ -326,22 +326,20 @@ span {
 
 .input {
   background-color: white;
-  width: 160px;
+  max-width: 250px;
   height: 63px;
   border-radius: 3px;
-  margin-right: 15px;
   text-align: center;
-  font-size: 18px;
+  font-size: 22px;
   border: none;
   padding: 10px 5px;
 }
 
 .btn {
   color: white;
-  width: 160px;
+  max-width: 250px;
   height: 65px;
-  font-weight: bold;
-  font-size: 18px;
+  font-size: 19px;
   border-radius: 3px;
   border: none;
   background-color: #ff9e01;

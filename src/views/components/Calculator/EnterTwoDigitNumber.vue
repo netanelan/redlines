@@ -6,9 +6,9 @@
         class="check-mark-icon"
         src="@/assets/check-mark-filled.svg"
       />
-      <span class="text">Quote is Ready</span>
+      <span class="text thin-font">Quote is Ready</span>
       <img alt="" class="icon" src="@/assets/more-than-sign.svg" />
-      <span class="text" style="color: #c2c1c1">View Quote</span>
+      <span class="text thin-font" style="color: #c2c1c1">View Quote</span>
     </div>
     <span v-if="isLoading" class="loader"></span>
     <h3
@@ -18,13 +18,13 @@
     >
       {{ phoneValidationError }}
     </h3>
-    <h4 v-else class="valid-h4">Your text was sent to:</h4>
+    <h4 v-else class="valid-h4 thin-font">Your text was sent to:</h4>
     <h2 class="title">{{ lead.phone }}</h2>
     <div class="email-form">
       <form class="form">
-        <h3 v-if="!hasError" class="subtitle">Enter 4-digit Number</h3>
+        <h3 v-if="!hasError" class="subtitle thin-font">Enter 4-digit Number</h3>
         <div v-else class="text-wrapp">
-          <h2 class="emails-title">Please enter four digit number</h2>
+          <h2 class="emails-title thin-font">Please enter four digit number</h2>
           <img alt="" class="mark-icon" src="@/assets/close.png" />
         </div>
         <input
@@ -39,11 +39,11 @@
         <button class="btn" type="submit" @click.prevent="onSubmit">
           SUBMIT
         </button>
-        <a v-if="resend" class="resend-code" @click.prevent="onResend"
+        <a v-if="resend" class="resend-code thin-font" @click.prevent="onResend"
           >RESEND CODE</a
         >
-        <a v-if="!resend" class="resend-code disabled">{{ resendCount }}</a>
-        <ul class="note-list">
+        <a v-if="!resend" class="resend-code disabled thin-font">{{ resendCount }}</a>
+        <ul class="note-list thin-font">
           <li class="number-info">
             After validating your number, your quote will<br />be ready and we
             will match you with movers.
@@ -55,7 +55,7 @@
       </form>
       <div class="disclaimer">
         <img alt="" class="lock-icon" src="@/assets/lock.svg" />
-        <p class="disclaimer-text">Your information is safe with us.</p>
+        <p class="disclaimer-text thin-font">Your information is safe with us.</p>
         <img alt="" class="disclaimer-icon" src="@/assets/disclaimer.jpg" />
       </div>
     </div>
@@ -209,7 +209,7 @@ export default {
 }
 
 .wrapper {
-  padding: 20px 0;
+  padding: 20px 5px;
 }
 
 .movers-wrapper {
@@ -217,20 +217,22 @@ export default {
   align-items: center;
   justify-content: center;
   margin: 0 auto 30px;
-  width: 300px;
+  width: 270px;
   height: 40px;
-  border: 1px solid #c2c1c1;
+  border: 1px solid rgb(194,193,193,0.2);
   border-radius: 3px;
 }
 
 .email-form {
+  margin: auto;
+  border-radius: 10px;
+  max-width: 500px;
   background-color: #414c5e;
-  min-height: 100%;
 }
 
 .text {
   color: grey;
-  font-weight: bold;
+  font-size: 14px;
 }
 
 .icon {
@@ -247,8 +249,7 @@ export default {
 }
 
 .form {
-  padding: 10px 5px 20px 5px;
-  height: 327px;
+  padding: 25px 10px 5px 10px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -269,11 +270,12 @@ export default {
 
 .input {
   background-color: white;
-  width: 250px;
+  max-width: 250px;
+  width: 100%;
   border-radius: 3px;
-  font-size: 18px;
-  height: 70px;
-  margin-bottom: 11px;
+  font-size: 22px;
+  height: 63px;
+  margin-bottom: 20px;
   text-align: center;
   border: none;
   padding: 10px 5px;
@@ -281,9 +283,9 @@ export default {
 
 .btn {
   color: white;
-  width: 250px;
-  font-size: 18px;
-  font-weight: bold;
+  width: 100%;
+  max-width: 250px;
+  font-size: 19px;
   height: 70px;
   border-radius: 3px;
   border: none;
@@ -297,24 +299,23 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(226, 159, 51, 0.577);
-  padding: 0 20px 20px;
+  color: rgba(226, 159, 51, 0.3);
+  padding-bottom: 5px;
 }
 
 .lock-icon {
-  width: 15px;
-  height: 15px;
+  width: 12px;
 }
 
 .disclaimer-icon {
-  width: 80px;
-  height: 40px;
+  width: 60px;
+  height: 32px;
 }
 
 .disclaimer-text {
   margin-left: 10px;
   margin-right: 15px;
-  font-size: 0.8rem;
+  font-size: 10px;
 }
 
 .text-wrapp {

@@ -7,7 +7,6 @@
           v-for="size in sizes"
           :class="size.name === lead.move_size.name ? 'selected' : ''"
           class="btn"
-          type="submit"
           @click.prevent="onSizeSelect(size)"
         >
           {{ size.name }}
@@ -46,12 +45,10 @@ export default {
         value: "4 bedroom",
       },
       {
-        name: "Oficce/Commertial",
-        value: "2 bedroom",
+        name: "Office/Commercial",
+        value: "Office/Commercial",
       },
     ],
-    maxHeight: `${window.innerHeight}px`,
-    maxWidth: `${window.innerWidth}px`,
   }),
   computed: {
     ...mapState(useStepperStore, ["lead"]),
@@ -120,28 +117,30 @@ export default {
 }
 
 .title {
-  color: white;
   margin-bottom: 15px;
 }
 
 .btn {
   color: white;
-  width: 16rem;
-  height: 3rem;
+  max-width: 256px;
+  width: 100%;
+  height: 48px;
   border-radius: 3px;
   border: none;
   background-color: #ff9e01;
   padding: 10px 10px;
   margin-top: 15px;
   cursor: pointer;
-  font-weight: 900;
-  font-size: 18px;
+  font-size: 19px;
 }
 
 .btn-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   height: 100%;
+  width: 100%;
+  padding:0px 10px;
 }
 </style>

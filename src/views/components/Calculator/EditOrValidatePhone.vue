@@ -10,8 +10,8 @@
       <img alt="" class="icon" src="@/assets/more-than-sign.svg" />
       <span class="text" style="color: #c2c1c1">View Quote</span>
     </div>
-    <h2 class="title">Number Confirmation</h2>
-    <h4 class="valid-h4">
+    <h2 class="title thin-font">Number Confirmation</h2>
+    <h4 class="valid-h4 thin-font">
       Movers require us to validate your number<br />prior to processing your
       quote.
     </h4>
@@ -121,7 +121,7 @@ export default {
 }
 
 .wrapper {
-  padding: 20px 0;
+  padding: 20px 5px;
 }
 
 .movers-wrapper {
@@ -129,20 +129,22 @@ export default {
   align-items: center;
   justify-content: center;
   margin: 0 auto 30px;
-  width: 300px;
+  width: 270px;
   height: 40px;
-  border: 1px solid #c2c1c1;
+  border: 1px solid rgb(194,193,193,0.2);
   border-radius: 3px;
 }
 
 .email-form {
+  margin: auto;
+  border-radius: 10px;
+  max-width: 500px;
   background-color: #414c5e;
-  min-height: 100%;
 }
 
 .text {
   color: grey;
-  font-weight: bold;
+  font-size: 14px;
 }
 
 .icon {
@@ -159,8 +161,7 @@ export default {
 }
 
 .form {
-  padding: 10px 5px 20px 5px;
-  height: 270px;
+  padding: 25px 10px 5px 10px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -183,7 +184,7 @@ export default {
   background-color: white;
   width: 250px;
   border-radius: 3px;
-  font-size: 18px;
+  font-size: 22px;
   height: 70px;
   margin-bottom: 11px;
   text-align: center;
@@ -194,8 +195,8 @@ export default {
 .btn {
   color: white;
   width: 250px;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 19px;
+  /* font-weight: bold; */
   height: 70px;
   border-radius: 3px;
   border: none;
@@ -209,24 +210,23 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(226, 159, 51, 0.577);
-  padding: 0 20px 20px;
+  color: rgba(226, 159, 51, 0.3);
+  padding-bottom: 5px;
 }
 
 .lock-icon {
-  width: 15px;
-  height: 15px;
+  width: 12px;
 }
 
 .disclaimer-icon {
-  width: 80px;
-  height: 40px;
+  width: 60px;
+  height: 32px;
 }
 
 .disclaimer-text {
   margin-left: 10px;
   margin-right: 15px;
-  font-size: 0.8rem;
+  font-size: 10px;
 }
 
 .text-wrapp {

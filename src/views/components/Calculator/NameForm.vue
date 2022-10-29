@@ -94,7 +94,7 @@ export default {
 
 <style scoped>
 .wrapper {
-  padding: 20px 0;
+  padding: 20px 5px;
 }
 
 .movers-wrapper {
@@ -111,16 +111,23 @@ export default {
 .form-wrapper {
   display: flex;
   justify-content: space-between;
-  width: 350px;
+  align-items: center;
+  gap:15px;
+}
+
+.form-wrapper>*{
+  width: 100%;
 }
 
 .name-form {
+  max-width: 500px;
   background-color: #414c5e;
-  min-height: 100%;
+  border-radius: 10px;
+  margin: auto;
 }
 
 .form {
-  padding: 20px 5px 5px 5px;
+  padding: 20px 10px 5px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -160,14 +167,13 @@ export default {
 .input {
   background-color: white;
   border-radius: 3px;
-  font-size: 18px;
+  font-size: 22px;
   height: 68px;
-  width: 167px;
+  max-width: 167px;
   margin-bottom: 20px;
   text-align: center;
   border: none;
   padding: 10px 5px;
-  font-size: 18px;
 }
 
 
@@ -176,8 +182,8 @@ export default {
 .btn {
   color: white;
   border-radius: 3px;
-  font-size: 18px;
-  font-weight: 800;
+  font-size: 19px;
+  /* font-weight: 800; */
   height: 65px;
   width: 160px;
   border: none;

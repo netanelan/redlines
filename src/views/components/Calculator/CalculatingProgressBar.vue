@@ -1,5 +1,5 @@
 <template>
-  <div :style="showMovers()" class="moversNumber"></div>
+  <div :style="showMovers()"  class="moversNumber"></div>
   <div class="calculating-progress-bar thin-font">
     <div class="info-block">
       <div class="text-wrapp">
@@ -37,6 +37,7 @@
         alt=""
         class="check-mark-icon"
         src="@/assets/check-mark-filled.svg"
+        id="check-mark-icon"
       />
     </div>
     <div v-if="percentage < 16" class="title">Calculating...</div>
@@ -50,7 +51,7 @@
     <div class="progress-bar">
       <div :style="barStyles" class="bar"></div>
     </div>
-    <div class="percentage">{{ percentage }}%</div>
+    <div class="percentage">{{ percentage <=100 ? percentage :100 }}%</div>
   </div>
 </template>
 
@@ -66,6 +67,7 @@ export default {
     moversCount: 0,
     interval: null,
     timeOut: null,
+    mainPosition:0,
   }),
   computed: {
     ...mapState(useStepperStore, ["lead", "moveDate"]),
@@ -83,6 +85,8 @@ export default {
   },
   mounted() {
     this.initSearching();
+    this.mainPosition=document.getElementsByClassName("main")[0].clientHeight+document.getElementsByClassName("header")[0].clientHeight;
+    document.getElementsByClassName("moversNumber")[0].style.cssText=`top:${this.mainPosition}px;`;
   },
   beforeUnmount() {
     if (this.interval) clearInterval(this.interval);
@@ -92,40 +96,57 @@ export default {
     initSearching() {
       this.moversCount = 1;
       const redirect = () => {
-        router.push("/email-form");
+        // router.push("/email-form");
       };
       const handle = () => {
         if(this.percentage<100)this.percentage++;
-        if(this.percentage==30){
-          document.getElementsByClassName("check-mark-icon")[0].style.cssText="scale:(1.5);"
+        if(this.percentage==31){
+          this.iconBScale();
         }
-        if(this.percentage==35){
-          document.getElementsByClassName("check-mark-icon")[0].style.cssText="scale:(1);"
-        }
-        if (this.percentage > 45) {
+        if (this.percentage == 45) {
+          this.iconBScale();
           this.moversCount = 2;
         }
-
-        if (this.percentage > 75) {
+        if (this.percentage == 75) {
+          this.iconBScale();
           this.moversCount = 3;
         }
 
-        if (this.percentage >= 100) {
+        if (this.percentage == 100) {
+          this.iconBScale();
           this.moversCount=4;
-          this.percentage = 100;
           this.timeOut = setTimeout(redirect, 2000);
+          this.percentage++;
         }
       };
-      this.interval = setInterval(handle, 60);
+      this.interval = setInterval(handle, 80);
     },
     showMovers(){
-    if(this.percentage>=30) return `top:${374+40+26*this.moversCount}px;`;
+    if(this.percentage>=30){ 
+      this.mainPosition=document.getElementsByClassName("main")[0].clientHeight+document.getElementsByClassName("header")[0].clientHeight;
+      return `top:${this.mainPosition+40+(25*this.moversCount)}px;height:${175-(25*this.moversCount)}px`;
+    }
+  },
+  iconBScale(){
+    document.getElementById("check-mark-icon").classList.add("check-mark-icon-found");
+    setTimeout(()=>{document.getElementById("check-mark-icon").classList.remove("check-mark-icon-found");},320);
   },
   },
 };
 </script>
 
 <style scoped>
+
+  @keyframes checkscale{
+    0%{width: 40px;height: 40px;}
+    50%{width: 48px;height: 48px;}
+    100%{width: 40px;height: 40px;}
+  }
+
+  .check-mark-icon-found{
+    animation-name: checkscale;
+    animation-duration: 320ms;
+  }
 
 .moversNumber{
   position: absolute;
@@ -134,7 +155,8 @@ export default {
   margin: 0px auto;
   z-index: 2;
   background-color:white;
-  top:374px;
+  left:0;
+  right: 0;
   height: 175px;
 }
 .calculating-progress-bar {
@@ -172,14 +194,12 @@ export default {
 }
 
 .check-mark {
-  margin-bottom: 20px;
   height: 46px;
 }
 
 .check-mark-icon {
   width: 40px;
   height: 40px;
-  transform: all 0.3s;
 }
 
 .icon-home {

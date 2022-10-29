@@ -57,42 +57,7 @@ export default {
 </script>
 
 <style scoped>
-/* .spinner {
-  position: fixed; Sit on top of the page content
-  display: block; Hidden by default
-  width: 100vw; Full width (cover the whole page)
-  height: 100vh; Full height (cover the whole page)
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding-top: 3rem;
-  background-color: rgba(4, 3, 3, 0.8); Black background with opacity
-  cursor: progress; Add a pointer on hover
-} */
-.fc::v-deep .fc-toolbar-title {
-  font-size: 1rem;
-}
 
-.fc::v-deep .fc-daygrid-day-events {
-  display: none;
-}
-
-/* .move-date-selector {
-  position: relative;
-  justify-self: center;
-  display: grid;
-  justify-content: center;
-  flex-direction: column;
-  background-color: #3b4b60;
-  border-radius: 1rem;
-  padding-bottom: 5rem;
-  margin: 1rem;
-  padding-top: 3rem;
-  min-width: 20rem;
-  grid-area: 1 / 1;
-  z-index: 4;
-} */
 
 .move-date-selector{
   display: flex;
@@ -105,15 +70,6 @@ export default {
   border-radius: 20px;
 }
 
-.flatpickr-calendar.inline {
-  display: block;
-  /* position: relative; */
-  /* top: 2px; */
-}
-
-.calendar button {
-  margin: 10px;
-}
 
 h3 {
   margin-bottom: 50px;
@@ -127,11 +83,8 @@ p {
 }
 
 .form {
-  display: flex;
-  justify-content: center;
-  padding: 10px 5px 20px 5px;
+  padding: 10px 10px 20px;
   margin: 0 auto;
-  width: 100%;
 }
 .flatpickr-input {
   display: none;

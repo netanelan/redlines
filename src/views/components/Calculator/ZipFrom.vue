@@ -1,12 +1,14 @@
 <template>
   <div class="wrapper">
     <h2 class="title">Moving Cost Calculator</h2>
-    <img alt="" class="icon" src="@/assets/calculator.svg" />
+    <img alt="" class="icon" src="@/assets/calculator.svg" width="50" height="32" />
     <div class="subtitle">Enter Your Zip Below</div>
     <img
       alt=""
       class="arrow-icon"
       src="@/assets/arrow-down.svg"
+      height="20"
+      width="20"
     />
     <div class="zip-form">
       <form class="form">
@@ -51,12 +53,8 @@
             </div>
           </div>
           <div class="disclaimer">
-            <img alt="" class="disclaimer-icon" src="@/assets/disclaimer.jpg" />
-            <img
-              alt=""
-              class="disclaimer-lock-icon"
-              src="@/assets/lock-disclaimer.jpg"
-            />
+            <img alt="" class="disclaimer-icon" src="@/assets/disclaimer.jpg" width="60" height="30"/>
+            <img alt="" class="disclaimer-lock-icon" src="@/assets/lock-disclaimer.jpg" width="25" height="30"/>
           </div>
       </div>
       </form>
@@ -130,6 +128,7 @@ export default {
             });
 
             router.push("/size-selector");
+            // router.push("/phone-number-edit-validate");
         },
         onChange(e) {
             if (e.target.value.toString().length === 0) {
@@ -169,8 +168,7 @@ export default {
 
 <style scoped>
 .wrapper {
-  padding-top: 45px;
-  z-index: 2;
+  padding-top: 20px;
 }
 
 .form-wrapper {
@@ -180,6 +178,9 @@ export default {
   justify-content: center;
   gap:15px;
   margin-bottom: 15px;
+}
+.form-wrapper >*{
+  width: 100%;
 }
 
 .subtitle {
@@ -237,14 +238,11 @@ export default {
 }
 
 .icon {
-  width: 50px;
-  height: 32px;
   margin-bottom: 10px;
   opacity: 0.6;
 }
 
 .arrow-icon {
-  height: 20px;
   margin-bottom: 8px;
 }
 
@@ -285,7 +283,7 @@ export default {
 
 .form {
   background-color: #414c5e;
-  padding: 10px 5px 20px 5px;
+  padding: 10px 10px 20px;
   min-height: 217px;
   display: flex;
   align-items: center;
@@ -304,21 +302,21 @@ export default {
 
 .input {
   background-color: white;
-  width: 160px;
+  max-width: 250px;
   height: 65px;
   border-radius: 3px;
   text-align: center;
-  font-size: 18px;
+  font-size: 22px;
   border: none;
   padding: 10px 5px;
 }
 
+
 .btn {
   color: white;
-  width: 160px;
+  max-width: 250px;
   height: 65px;
-  font-weight: bold;
-  font-size: 1rem;
+  font-size: 19px;
   border-radius: 3px;
   border: none;
   background-color: #ff9e01;
@@ -332,13 +330,5 @@ export default {
   justify-content: flex-end;
 }
 
-.disclaimer-lock-icon {
-  width: 25px;
-  height: 30px;
-}
 
-.disclaimer-icon {
-  width: 60px;
-  height: 30px;
-}
 </style>
