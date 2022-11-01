@@ -96,7 +96,7 @@ export default {
     initSearching() {
       this.moversCount = 1;
       const redirect = () => {
-        // router.push("/email-form");
+        router.push("/email-form");
       };
       const handle = () => {
         if(this.percentage<100)this.percentage++;
