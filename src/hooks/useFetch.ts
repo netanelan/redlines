@@ -22,6 +22,7 @@ export const useFetch = async <T>(
 ) => {
   const endPoint = `http://stage.redvanlines.com:8081${url}`;
   // const endPoint = `${import.meta.env.VITE_API_ENDPOINT}${url}`;
+  // const endPoint=`https://www.redvanlines.com/validate${url}`;
   const token = await enc();
   options = {
     ...options,
